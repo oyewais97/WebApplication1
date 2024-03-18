@@ -18,4 +18,15 @@ public class TokenDbContext : DbContext
     public TokenDbContext(DbContextOptions<TokenDbContext> options) : base(options)
     {
     }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+      
+        modelBuilder.Entity<Token>()
+            .Property(t => t.TotalSupply)
+            .HasColumnType("decimal(18, 8)");
+
+        modelBuilder.Entity<Token>()
+            .Property(t => t.CirculatingSupply)
+            .HasColumnType("decimal(18, 8)");
+    }
 }
